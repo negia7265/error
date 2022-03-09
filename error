@@ -1,22 +1,45 @@
+#include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-void update(int *a,int *b) {
-    // Complete this function    
-    printf("%d\n",*a+*b);
-    if(*a>*b)
-    printf("%d",*a-*b);
-    else
-    printf("%d",*b-*a);
-    }
-
-
-int main() {
-    int a, b;
-    int *pa = &a, *pb = &b;
-    
-    scanf("%d %d", &a, &b);
-    update(pa, pb);
-    printf("%d\n%d", a, b);
-
-    return 0;
+#define MIN_ELEMENT 1
+#define MAX_ELEMENT 1000000
+int  sum (int count,...) {
+int sum=0;
+va_list sp;
+va_start(sp, count);
+for(int i=0;i<count;i++)
+ sum+=va_arg(sp,int);
+va_end(sp);
+return sum;
 }
+
+int min(int count,...) {
+int temp;
+va_list sp;
+va_start(sp,count);
+temp=va_arg(sp,int);
+for(int i=1;i<count;i++)
+{
+if(va_arg(sp,int)>=temp);
+temp=va_arg(sp,int);
+}
+va_end(sp);
+return temp;
+}
+int max(int count,...) {
+int temp;
+va_list sp;
+va_start(sp,count);
+temp=va_arg(sp,int);
+for(int i=1;i<count;i++)
+{
+if(va_arg(sp,int)<=temp);
+temp=va_arg(sp,int);
+}
+va_end(sp);
+return temp;
+}
+
+int test_implementations_by_sending_three_elements() {
